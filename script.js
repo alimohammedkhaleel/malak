@@ -175,30 +175,21 @@ function setupScrollAnimations() {
     if(horizWrapper && horizContainer) {
         const spans = horizWrapper.querySelectorAll('.creative-span');
 
-        if(isMobile) {
-            // MOBILE: Simple vertical reveal with stagger
-            spans.forEach(el => gsap.set(el, { opacity: 0, y: 30 }));
-
-            gsap.to(spans, {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                stagger: 0.15,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: horizContainer,
-                    start: "top 70%",
-                    toggleActions: "play none none none"
-                },
-                onComplete: () => {
-                    // After all appear, highlight red ones
-                    spans.forEach(el => {
-                        const type = el.dataset.type;
-                        if(type === "scale" || type === "drop") {
-                            gsap.to(el, { color: "#ef4444", duration: 0.4, delay: 0.2 });
-                        }
-                    });
-                }
+        if (isMobile) {
+            // MOBILE: Match NCTVPN exactly, each word animates individually on scroll
+            spans.forEach(el => {
+                gsap.fromTo(el, { opacity: 0, y: 20, scale: 0.8 }, {
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1,
+                    color: (el.dataset.type === "scale" || el.dataset.type === "drop") ? "#ef4444" : "#ffffff",
+                    duration: 0.6,
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
             });
         } else {
             // DESKTOP: Horizontal pinned scroll

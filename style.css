@@ -603,24 +603,22 @@ body.home-page {
     }
     .horizontal-scroll-container {
         height: auto;
-        min-height: 50vh;
         overflow: visible;
-        padding: 3rem 1.5rem;
+        padding: 40px 1.5rem;
     }
     .horizontal-wrapper {
-        display: block;
+        flex-direction: column;
+        height: auto;
+        width: 100vw;
         white-space: normal;
-        width: 100%;
         padding: 0;
-        text-align: center;
     }
     .epic-sentence {
-        font-size: 1.3rem;
+        font-size: 1.8rem;
         white-space: normal;
-        line-height: 2;
+        line-height: 1.5;
         display: block;
         text-align: center;
-        gap: 0.3rem;
     }
     .epic-sentence .creative-span {
         display: inline;
