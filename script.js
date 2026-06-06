@@ -167,51 +167,81 @@ function setupScrollAnimations() {
         );
     }
 
-    // Horizontal Scroll (NCTVPN style)
+    // Horizontal Scroll (NCTVPN style) - Desktop only, vertical on mobile
     const horizWrapper = document.querySelector('.horizontal-wrapper');
     const horizContainer = document.querySelector('.horizontal-scroll-container');
-    if(horizWrapper && horizContainer) {
-        const getAmountToScroll = () => horizWrapper.scrollWidth - window.innerWidth;
-        const spans = horizWrapper.querySelectorAll('.creative-span');
-        
-        spans.forEach(el => gsap.set(el, { opacity: 0 }));
+    const isMobile = window.innerWidth <= 768;
 
-        gsap.to(horizWrapper, {
-            x: () => getAmountToScroll(),
-            ease: "none",
-            scrollTrigger: {
-                trigger: horizContainer,
-                pin: true,
-                scrub: 1,
-                start: "top top",
-                end: () => `+=${getAmountToScroll()}`,
-                invalidateOnRefresh: true,
-                onUpdate: (self) => {
+    if(horizWrapper && horizContainer) {
+        const spans = horizWrapper.querySelectorAll('.creative-span');
+
+        if(isMobile) {
+            // MOBILE: Simple vertical reveal with stagger
+            spans.forEach(el => gsap.set(el, { opacity: 0, y: 30 }));
+
+            gsap.to(spans, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.15,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: horizContainer,
+                    start: "top 70%",
+                    toggleActions: "play none none none"
+                },
+                onComplete: () => {
+                    // After all appear, highlight red ones
                     spans.forEach(el => {
                         const type = el.dataset.type;
-                        const rect = el.getBoundingClientRect();
-                        const center = rect.left + (rect.width / 2);
-                        const viewportCenter = window.innerWidth / 2;
-                        
-                        let dist = (center - viewportCenter) / (window.innerWidth / 2);
-                        let p = 1 - Math.abs(dist);
-                        p = Math.max(0, Math.min(1, p));
-
-                        if (p > 0.4) {
-                            if (type === "scale") gsap.to(el, { scale: 1, opacity: 1, color: "#ef4444", duration: 0.15 });
-                            else if (type === "drop") gsap.to(el, { y: 0, opacity: 1, color: "#ef4444", duration: 0.15 });
-                            else if (type === "slide-in-rtl") gsap.to(el, { x: 0, opacity: 1, color: "#ffffff", duration: 0.15 });
-                            else if (type === "slide-in-ltr") gsap.to(el, { x: 0, opacity: 1, color: "#ffffff", duration: 0.15 });
-                        } else {
-                            if (type === "scale") gsap.to(el, { scale: 0, opacity: 0, duration: 0.2 });
-                            else if (type === "drop") gsap.to(el, { y: -60, opacity: 0, duration: 0.2 });
-                            else if (type === "slide-in-rtl") gsap.to(el, { x: 100, opacity: 0, duration: 0.2 });
-                            else if (type === "slide-in-ltr") gsap.to(el, { x: -100, opacity: 0, duration: 0.2 });
+                        if(type === "scale" || type === "drop") {
+                            gsap.to(el, { color: "#ef4444", duration: 0.4, delay: 0.2 });
                         }
                     });
                 }
-            }
-        });
+            });
+        } else {
+            // DESKTOP: Horizontal pinned scroll
+            const getAmountToScroll = () => horizWrapper.scrollWidth - window.innerWidth;
+            spans.forEach(el => gsap.set(el, { opacity: 0 }));
+
+            gsap.to(horizWrapper, {
+                x: () => getAmountToScroll(),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: horizContainer,
+                    pin: true,
+                    scrub: 1,
+                    start: "top top",
+                    end: () => `+=${getAmountToScroll()}`,
+                    invalidateOnRefresh: true,
+                    onUpdate: (self) => {
+                        spans.forEach(el => {
+                            const type = el.dataset.type;
+                            const rect = el.getBoundingClientRect();
+                            const center = rect.left + (rect.width / 2);
+                            const viewportCenter = window.innerWidth / 2;
+                            
+                            let dist = (center - viewportCenter) / (window.innerWidth / 2);
+                            let p = 1 - Math.abs(dist);
+                            p = Math.max(0, Math.min(1, p));
+
+                            if (p > 0.4) {
+                                if (type === "scale") gsap.to(el, { scale: 1, opacity: 1, color: "#ef4444", duration: 0.15 });
+                                else if (type === "drop") gsap.to(el, { y: 0, opacity: 1, color: "#ef4444", duration: 0.15 });
+                                else if (type === "slide-in-rtl") gsap.to(el, { x: 0, opacity: 1, color: "#ffffff", duration: 0.15 });
+                                else if (type === "slide-in-ltr") gsap.to(el, { x: 0, opacity: 1, color: "#ffffff", duration: 0.15 });
+                            } else {
+                                if (type === "scale") gsap.to(el, { scale: 0, opacity: 0, duration: 0.2 });
+                                else if (type === "drop") gsap.to(el, { y: -60, opacity: 0, duration: 0.2 });
+                                else if (type === "slide-in-rtl") gsap.to(el, { x: 100, opacity: 0, duration: 0.2 });
+                                else if (type === "slide-in-ltr") gsap.to(el, { x: -100, opacity: 0, duration: 0.2 });
+                            }
+                        });
+                    }
+                }
+            });
+        }
     }
 
     // Parallax Effect

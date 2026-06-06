@@ -601,14 +601,29 @@ body.home-page {
     .message-card {
         padding: 1.5rem;
     }
-    .epic-sentence {
-        font-size: 1.4rem;
-        white-space: normal;
-        line-height: 1.6;
+    .horizontal-scroll-container {
+        height: auto;
+        min-height: 50vh;
+        overflow: visible;
+        padding: 3rem 1.5rem;
     }
     .horizontal-wrapper {
-        padding-right: 10vw;
-        padding-left: 10vw;
+        display: block;
+        white-space: normal;
+        width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+    .epic-sentence {
+        font-size: 1.3rem;
+        white-space: normal;
+        line-height: 2;
+        display: block;
+        text-align: center;
+        gap: 0.3rem;
+    }
+    .epic-sentence .creative-span {
+        display: inline;
     }
     .sync-lyric {
         font-size: 1.3rem;
