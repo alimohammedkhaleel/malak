@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى ملك - جواك بطل</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <audio id="bg-audio" src="batal.m4a" preload="auto"></audio>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Canvas Confetti for Celebration effect -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-page">
+
+    <!-- Entry Overlay (Like Loly's Birthday) -->
+    <div id="entry-overlay" class="entry-overlay">
+        <div class="overlay-content">
+            <h1 class="overlay-title">رسالة خاصة لأغلى إنسانة</h1>
+            <p class="overlay-subtitle">شغلي الصوت واستعدي...</p>
+            <button id="entry-btn" class="entry-btn">
+                <span>ابتسمي ي اجمل و احلى و اشطر ملوكة في الدنيا</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Audio Player -->
+    <audio id="local-audio" loop>
+        <source src="batal.m4a" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Floating Audio Control -->
+    <div class="audio-controls">
+        <button id="playBtn" class="audio-btn">
+            <span id="playIcon">
+                <!-- SVG Play/Pause added via JS -->
+            </span>
+        </button>
+        <div id="equalizer" class="equalizer paused">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- Hero Section (NCTVPN style but RED) -->
+    <section class="hero-section" id="hero">
+        <div class="hero-glow-spot"></div>
+
+        <div class="hero-content-wrapper">
+            <div class="hero-animate hero-badge">إلى ملك</div>
+            <h1 class="hero-animate hero-title">
+                يا أغلى إنسانة في الدنيا..<br />
+                <span class="highlight-red">جواكِ بطل!</span>
+            </h1>
+            
+            <div class="hero-animate hero-columns">
+                <div class="hero-col col-right">
+                    <h3 class="hero-col-title">رسالة من القلب</h3>
+                    <p class="hero-col-text">
+                        بصي يا ملك، أنتي شخص غالي عندي أوي، يمكن أغلى من أي حد في الدنيا. أنا عارف إنك زعلانة عشان امتحان العربي، بس صدقيني العياط ملوش أي لازمة.
+                    </p>
+                </div>
+                <div class="hero-col col-left">
+                    <h3 class="hero-col-title">ربنا هيعوضك</h3>
+                    <p class="hero-col-text">
+                        أنا متأكد إن ربنا هيعوضك عن تعبك ومجهودك، وهتحلي كويس جداً في الباقي. بكرا امتحان الفيزيكس، وأنتي قدها وهتعدي وتفرحينا.
+                    </p>
+                </div>
+            </div>
+
+            <div class="hero-animate hero-metrics">
+                <div class="metric-box">
+                    <span class="metric-num">100%</span>
+                    <span class="metric-label">ثقة في نجاحك</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-num">∞</span>
+                    <span class="metric-label">حب ودعم ليكي</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expanded Message Section with Prayers -->
+    <section class="content-section message-section" id="message-section">
+        <h2 class="section-title">رسالة من كل قلبي لـ <span class="highlight-red">أغلى ملك</span></h2>
+        
+        <div class="message-card parallax-element" data-depth="0.1">
+            <p class="section-text prayer-text">
+                يا ملك، يا أجمل وأغلى وأشطر إنسانة في الدنيا كلها..
+                <br><br>
+                بلاش عياط خالص، دموعك دي غالية علينا أوي وما تهونش علينا أبداً. الامتحانات دي مجرد خطوات ومحطات صغيرة في طريق طويل، وامتحان العربي ده عدى وخلص بحلوه ومُره، اقفلي صفحته وسيبيه لربنا، هو عالم بتعبك ومجهودك وهيعوضك عنه خير كبير جداً فوق ما تتخيلي. أنتي عملتي اللي عليكي وزيادة، ومفيش تعب بيروح على الفاضي أبداً، ربنا بيحوشلك الفرحة الكبيرة في الوقت الصح.
+                <br><br>
+                خليكي دايماً فاكرة إن ربنا كريم وحنين، والعوض بتاعه بيفرح القلب وبيمسح أي زعل. امسحي دموعك الجميلة دي بقى، وخدي نفس عميق، وركزي في امتحان الفيزياء بتاع بكرة. اعملي اللي عليكي وتوكلي على الله، وأنتي قدها وزيادة كمان. أنتي بطلة، والبطل بيقع عشان يقوم أقوى من الأول.
+            </p>
+        </div>
+
+        <div class="topology-diagram parallax-element" data-depth="0.05" style="margin: 3rem 0;">
+            <div class="topo-hub">
+                <span>ملوكة الشاطرة</span>
+                <small>(بطلة الحكاية)</small>
+            </div>
+            <div class="topo-spokes">
+                <div class="topo-spoke">
+                    <span>امتحان الفيزيكس</span>
+                    <small>(خطوة صغيرة وهتعدي بسهولة)</small>
+                </div>
+                <div class="topo-spoke">
+                    <span>المستقبل</span>
+                    <small>(مليان نجاح وفرحة وعوض جميل)</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="message-card parallax-element" data-depth="0.15" style="border-color: #ef4444;">
+            <p class="section-text prayer-text highlight-red" style="font-size: 1.4rem; font-weight: bold; line-height: 2.2;">
+                يا رب يا حنان يا منان، اجبر بخاطر "ملك"، وطبطب على قلبها، وعوضها العوض الجميل عن أي زعل أو تعب شافته. يا رب نور بصيرتها، واشرح صدرها، ويسر لها كل صعب في امتحان الفيزياء وباقي المواد. يا رب فرّح قلبها بمجموع يفوق توقعاتها، وارزقها السعادة والرضا، واجعل أيامها اللي جاية كلها ضحك ونور ونجاح. يا رب هي تعبت فكافئها بكرمك اللي ملوش حدود.
+            </p>
+        </div>
+    </section>
+
+    <!-- Motivational Sections -->
+    <section class="content-section motivational-section">
+        <div class="lyrics-grid">
+            <div class="lyric-card parallax-element" data-depth="0.05">
+                <h3 style="color: #ef4444; margin-bottom: 1rem;">أنتي قدها</h3>
+                <p>كل تعب بتتعبي دلوقتي بيبني شخصيتك وبيخليكي أقوى. مفيش حاجة صعبة على ربنا، وهو شايف مجهودك. خلي عندك يقين إن اللي جاي أحلى بكتير من اللي فات.</p>
+            </div>
+            <div class="lyric-card parallax-element" data-depth="0.1">
+                <h3 style="color: #ef4444; margin-bottom: 1rem;">فخورة بيكي</h3>
+                <p>سواء امتحنتي كويس أو لأ، أنتي غالية ومقامك عالي. درجاتك مش هي اللي بتحدد قيمتك، قيمتك في روحك الحلوة وقلبك النضيف ومجهودك اللي بتبذليه.</p>
+            </div>
+            <div class="lyric-card parallax-element" data-depth="0.15">
+                <h3 style="color: #ef4444; margin-bottom: 1rem;">ابتسمي</h3>
+                <p>زعلك بيزعلنا، وضحكتك بتنور الدنيا كلها. امسحي دموعك، وتفائلي بالخير تجديه. امتحان الفيزيكس بكرا مجرد محطة، وهتعدي منها وأنتي رافعة راسك.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pinned Horizontal Scroll Section (NCTVPN Style) -->
+    <section class="horizontal-scroll-container" id="horizontal-scroll">
+        <div class="horizontal-wrapper">
+            <h2 class="epic-sentence">
+                <span class="creative-span" data-type="slide-in-rtl">مهما كانت</span> 
+                <span class="creative-span" data-type="drop" style="color: #ef4444;">الظروف صعبة</span>، 
+                <span class="creative-span" data-type="scale">خليكي فاكرة</span> إن 
+                <span class="creative-span" data-type="slide-in-ltr">كل تعب</span> هينتهي 
+                <span class="creative-span" data-type="drop" style="color: #ef4444;">بفرحة كبيرة</span>.. 
+                <span class="creative-span" data-type="scale">أنتي أقوى</span> من أي 
+                <span class="creative-span" data-type="drop">امتحان</span>!
+            </h2>
+        </div>
+    </section>
+
+    <!-- Lyrics Synchronized Section -->
+    <section class="content-section lyrics-section" style="text-align: center;">
+        <div class="sync-lyrics-container">
+            <p class="sync-lyric" data-time="3.9,10.4">قالوا الأحلام زي الأمواج بتتكسر على صخور الواقع</p>
+            <p class="sync-lyric" data-time="10.4,14.7">بس في ناس عرفت تكسر صخور الواقع بحلمها</p>
+            <p class="sync-lyric" data-time="14.7,18.1">وفي ناس اتنازلت عن أحلامها</p>
+            <p class="sync-lyric" data-time="18.1,24.5">الأحلام ما بتموتش إنما ممكن تتنسي</p>
+            <p class="sync-lyric" data-time="24.5,27.4">عاوز تحقق حلمك ينفع لكن بشرط</p>
+            <p class="sync-lyric" data-time="27.4,29.8">لازم تفارق منطقة الراحة وتعدي الخط</p>
+            <p class="sync-lyric" data-time="29.8,32.8">الـ comfort zone أمان مزيف فارقه وفوق من الخلط</p>
+            <p class="sync-lyric" data-time="32.8,35.2">مش ممكن تعبر المحيط من غير فراق الشط</p>
+            <p class="sync-lyric" data-time="35.2,37.2">انشف وامنع خوفك ياخد عنك قرار</p>
+            <p class="sync-lyric" data-time="37.2,40.2">وطنش إحباط الناس اللي بتتمنالك الانهيار</p>
+            <p class="sync-lyric" data-time="40.2,42.9">هما اختاروا يشوفوا الماتش أنت قررت تلعب</p>
+            <p class="sync-lyric" data-time="42.9,45.6">هم اختاروا العادي السهل أنت قررت تتعب</p>
+            <p class="sync-lyric" data-time="45.6,48.1">أغلبهم عنده القدرة بس العبرة بالاختيار</p>
+            <p class="sync-lyric" data-time="48.1,50.8">عشان كده تلقى الأبطال في الدنيا دايما مش كتار</p>
+            <p class="sync-lyric" data-time="50.8,53.7">لو حد حاول يقنعك تنزل بسقف حلمك</p>
+            <p class="sync-lyric" data-time="53.7,56.4">عشان يكون واقعي ارفض</p>
+            <p class="sync-lyric" data-time="56.4,58.3">أنت اللي شفت حلمك أنت البطل في فيلمك</p>
+            <p class="sync-lyric" data-time="58.3,62.6">ارمي تكالك على الخالق واخلص تلقاه يدلك</p>
+            <p class="sync-lyric" data-time="62.6,67.6">جواك بطل، بس انت دور عليه...</p>
+        </div>
+
+        <div class="center-btn-wrapper parallax-element" data-depth="0.05" style="margin-top: 5rem;">
+             <button id="confetti-btn" class="red-btn">ابتسمي يا أجمل ملوكة!</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
