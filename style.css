@@ -600,12 +600,15 @@ body.home-page {
     }
     .message-card {
         padding: 1.5rem;
+    }
     .epic-sentence {
-        font-size: 3rem;
+        font-size: 1.4rem;
+        white-space: normal;
+        line-height: 1.6;
     }
     .horizontal-wrapper {
-        padding-right: 20vw;
-        padding-left: 20vw;
+        padding-right: 10vw;
+        padding-left: 10vw;
     }
     .sync-lyric {
         font-size: 1.3rem;
